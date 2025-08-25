@@ -95,24 +95,13 @@ nav {
     align-items: center;
 }
 
-/* New Logo Styles */
-.logo-link {
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
     text-decoration: none;
-    display: flex;
-    align-items: center;
+    letter-spacing: 1px;
 }
-
-.svg-logo {
-    height: 32px;
-    width: auto;
-    color: #fff; /* SVG uses 'color' for currentColor */
-    transition: color 0.3s ease;
-}
-
-.logo-link:hover .svg-logo {
-    color: var(--primary-color);
-}
-
 
 nav ul {
     list-style: none;
@@ -315,7 +304,7 @@ footer {
         gap: 1.5rem;
     }
 
-    .svg-logo {
-        height: 28px;
+    .logo {
+        font-size: 1.2rem;
     }
 }
