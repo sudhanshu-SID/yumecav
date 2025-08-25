@@ -1,0 +1,310 @@
+/* --- CSS Variables and Universal Settings --- */
+:root {
+    --background-color: #121212; /* A deep, modern black */
+    --text-color: #e0e0e0;       /* Soft white for readability */
+    --primary-color: #9b59b6;  /* A stylish, soft purple accent */
+    --secondary-color: #1f1f1f;  /* Slightly lighter black for cards */
+    --border-color: #333;        /* Subtle border color */
+}
+
+/* Basic reset for consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Enables smooth scrolling when clicking navigation links */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* --- Reusable Components --- */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content-section {
+    padding: 6rem 0;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+p {
+    font-weight: 300;
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin: 0 auto 1.5rem auto;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px; /* Fully rounded button */
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    /* Smooth transition for hover effects */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cta-button:hover {
+    /* Lifts the button on hover for a 3D effect */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(155, 89, 182, 0.2);
+}
+
+/* --- Header & Navigation --- */
+header {
+    position: fixed; /* Sticks the header to the top */
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 1.5rem 0;
+    z-index: 100;
+    /* Frosted glass effect for the header */
+    background: rgba(18, 18, 18, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Hero Section (The main welcome area) --- */
+.hero {
+    min-height: 100vh; /* Takes up the full screen height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative; /* Required for the overlay */
+    background-color: var(--secondary-color); /* Fallback color */
+    background-image: url('https://images.unsplash.com/photo-1604079628040-94301bb21b91?ixlib=rb-4.0.3&auto=format&fit=crop&w=987');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax-like effect on scroll */
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(18, 18, 18, 0.75); /* Dark overlay to ensure text is readable */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2; /* Ensures content is above the overlay */
+}
+
+.main-heading {
+    font-size: 5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0.5rem 0 2rem 0;
+    color: var(--text-color);
+}
+
+.section-subtitle {
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    color: #aaa;
+}
+
+/* --- Why Choose Us Section --- */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    text-align: left;
+}
+.feature-item {
+    background: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+}
+.feature-item svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--primary-color);
+    margin-bottom: 1rem;
+}
+.feature-item h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+.feature-item p {
+    font-size: 1rem;
+    max-width: 100%;
+    margin-bottom: 0;
+}
+
+/* --- Products Section --- */
+.product-grid {
+    display: grid;
+    /* Creates a responsive grid that adjusts columns automatically */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    /* Lifts the card on hover */
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px; /* Fixed height for uniform look */
+    object-fit: cover; /* Ensures image covers the area without distortion */
+    display: block;
+}
+
+.product-details {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.product-details h3 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.product-details p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    max-width: 100%;
+    line-height: 1.5;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: auto; /* Pushes price to the bottom */
+    text-align: left;
+}
+
+/* --- Contact Form Section --- */
+.form-container {
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.form-container iframe {
+    width: 100%;
+    height: 800px; /* Adjust height as needed */
+    border: none;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
+    color: #888;
+}
+
+/* --- Responsive Design for Mobile Devices --- */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2rem;
+    }
+
+    .main-heading {
+        font-size: 3.5rem;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
+    nav ul {
+        gap: 1.5rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+}
