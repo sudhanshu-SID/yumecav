@@ -1,20 +1,19 @@
 /* --- CSS Variables and Universal Settings --- */
 :root {
-    --background-color: #121212; /* A deep, modern black */
-    --text-color: #e0e0e0;       /* Soft white for readability */
-    --primary-color: #9b59b6;  /* A stylish, soft purple accent */
-    --secondary-color: #1f1f1f;  /* Slightly lighter black for cards */
-    --border-color: #333;        /* Subtle border color */
+    --background-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #9b59b6;
+    --secondary-color: #1f1f1f;
+    --border-color: #333;
 }
 
-/* Basic reset for consistency across browsers */
+/* Basic reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Enables smooth scrolling when clicking navigation links */
 html {
     scroll-behavior: smooth;
 }
@@ -38,7 +37,7 @@ body {
     text-align: center;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
     font-weight: 600;
     line-height: 1.2;
 }
@@ -61,29 +60,26 @@ p {
     background-color: var(--primary-color);
     color: #fff;
     padding: 12px 28px;
-    border-radius: 50px; /* Fully rounded button */
+    border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    /* Smooth transition for hover effects */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-button:hover {
-    /* Lifts the button on hover for a 3D effect */
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(155, 89, 182, 0.2);
 }
 
 /* --- Header & Navigation --- */
 header {
-    position: fixed; /* Sticks the header to the top */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     padding: 1.5rem 0;
     z-index: 100;
-    /* Frosted glass effect for the header */
     background: rgba(18, 18, 18, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
@@ -113,25 +109,45 @@ nav a {
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Underline hover effect for nav links */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-50%);
 }
 
 nav a:hover {
     color: var(--primary-color);
 }
 
-/* --- Hero Section (The main welcome area) --- */
+nav a:hover::after {
+    width: 100%;
+}
+
+
+/* --- Hero Section --- */
 .hero {
-    min-height: 100vh; /* Takes up the full screen height */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative; /* Required for the overlay */
-    background-color: var(--secondary-color); /* Fallback color */
+    position: relative;
+    background-color: var(--secondary-color);
     background-image: url('https://images.unsplash.com/photo-1604079628040-94301bb21b91?ixlib=rb-4.0.3&auto=format&fit=crop&w=987');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Parallax-like effect on scroll */
+    background-attachment: fixed;
 }
 
 .hero::before {
@@ -141,28 +157,49 @@ nav a:hover {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(18, 18, 18, 0.75); /* Dark overlay to ensure text is readable */
+    background-color: rgba(18, 18, 18, 0.75);
     z-index: 1;
 }
 
 .hero-content {
     position: relative;
-    z-index: 2; /* Ensures content is above the overlay */
+    z-index: 2;
 }
 
 .main-heading {
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 700;
     color: #fff;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .tagline {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin: 0.5rem 0 2rem 0;
-    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin: 1rem 0 2.5rem 0;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
+
+/* --- Page Header for Collection Pages --- */
+.page-header {
+    padding-top: 12rem;
+    padding-bottom: 4rem;
+    text-align: center;
+    background: var(--secondary-color);
+}
+.page-header h1 {
+    font-size: 3rem;
+    color: #fff;
+}
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-top: 0.5rem;
+}
+
 
 .section-subtitle {
     margin-top: -1rem;
@@ -183,7 +220,15 @@ nav a:hover {
     padding: 2rem;
     border-radius: 15px;
     border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Hover effect for feature cards */
+.feature-item:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+}
+
 .feature-item svg {
     width: 48px;
     height: 48px;
@@ -204,7 +249,6 @@ nav a:hover {
 /* --- Products Section --- */
 .product-grid {
     display: grid;
-    /* Creates a responsive grid that adjusts columns automatically */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
@@ -221,15 +265,14 @@ nav a:hover {
 }
 
 .product-card:hover {
-    /* Lifts the card on hover */
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.3);
 }
 
 .product-card img {
     width: 100%;
-    height: 250px; /* Fixed height for uniform look */
-    object-fit: cover; /* Ensures image covers the area without distortion */
+    height: 250px;
+    object-fit: cover;
     display: block;
 }
 
@@ -259,8 +302,120 @@ nav a:hover {
     font-size: 1.2rem;
     font-weight: 600;
     color: var(--primary-color);
-    margin-top: auto; /* Pushes price to the bottom */
+    margin-top: auto;
     text-align: left;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Underline hover for price tags */
+.product-price:hover {
+    text-decoration: underline;
+}
+
+/* --- Special "More Collections" Card --- */
+.product-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.more-collections-card {
+    background: transparent;
+    border: 2px dashed var(--border-color);
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.more-collections-card:hover {
+    border-color: var(--primary-color);
+    background-color: var(--secondary-color);
+}
+
+.more-collections-card .product-details {
+    text-align: center;
+    align-items: center;
+}
+
+.more-collections-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.more-collections-icon {
+    width: 32px;
+    height: 32px;
+    stroke: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+.more-collections-card:hover .more-collections-icon {
+    transform: translateX(5px);
+}
+
+/* --- View All Button Container --- */
+.view-all-container {
+    margin-top: 3rem;
+}
+
+/* --- Quality Promise Section --- */
+.quality-section {
+    background-color: var(--secondary-color);
+    padding: 6rem 0;
+}
+.quality-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+@media (min-width: 768px) {
+    .quality-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.quality-image {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+.quality-content {
+    text-align: left;
+}
+.quality-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 2rem;
+}
+.quality-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+.quality-icon {
+    width: 24px;
+    height: 24px;
+    color: #22c55e; /* Green checkmark */
+    flex-shrink: 0;
+    margin-top: 5px;
+}
+.quality-list li span strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+
+/* --- Collection Page Title --- */
+.collection-title {
+    font-size: 2.2rem;
+    text-align: left;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 /* --- Contact Form Section --- */
@@ -274,19 +429,111 @@ nav a:hover {
 
 .form-container iframe {
     width: 100%;
-    height: 800px; /* Adjust height as needed */
+    height: 800px;
     border: none;
 }
 
+/* --- Social Contact Links --- */
+.social-contact {
+    margin-top: 2.5rem;
+}
+.social-contact p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.social-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.social-button:hover {
+    transform: translateY(-5px);
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.social-button svg {
+    width: 24px;
+    height: 24px;
+}
+
 /* --- Footer --- */
-footer {
+.site-footer {
+    background-color: var(--secondary-color);
+    padding: 4rem 0 2rem 0;
+    font-size: 0.9rem;
+}
+
+.footer-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 220px;
+}
+
+.footer-column h4 {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.footer-column p {
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.footer-button {
+    padding: 10px 24px;
+    font-size: 0.9rem;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+.footer-bottom {
     text-align: center;
-    padding: 2rem 0;
+    padding-top: 2rem;
     border-top: 1px solid var(--border-color);
     color: #888;
 }
 
-/* --- Responsive Design for Mobile Devices --- */
+/* --- Responsive Design --- */
 @media (max-width: 768px) {
     h2 {
         font-size: 2rem;
@@ -297,7 +544,11 @@ footer {
     }
 
     .tagline {
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
     }
 
     nav ul {
@@ -306,5 +557,10 @@ footer {
 
     .logo {
         font-size: 1.2rem;
+    }
+    
+    .footer-grid {
+        flex-direction: column;
+        text-align: center;
     }
 }
